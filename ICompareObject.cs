@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Triangle3
+{
+    public interface ICompareObject
+    {
+        bool EqualsType(object obj, object obj2);
+    }
+
+    public class CompareObject : ICompareObject
+    {
+        public bool EqualsType(object obj, object obj2)
+        {
+            if (obj == null && obj2 == null)
+            {
+                return false;
+            }
+
+            if (obj.GetType() != obj2.GetType())
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
+}
