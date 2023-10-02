@@ -17,11 +17,7 @@ namespace Triangle3
             squares = new List<Square>();
             this.validation = validation;
         }
-        /// <summary>
-		/// value get from reflection maybe?
-		/// </summary>
-		/// <param name="a"></param>
-		/// <param name="h"></param>
+
         public void CreateNewTriangle(double a, double h)
         {
             var type = typeof(Triangle);
@@ -33,8 +29,11 @@ namespace Triangle3
 
         public void CreateNewSquare(double a)
         {
-            validation.ValidationLength(a, "square", "base");
+            var type = typeof(Square);
+            PropertyInfo[] properties = type.GetProperties();
+            validation.ValidationLength(a, typeof(Square).Name, properties[0].Name);
             squares.Add(new Square(a));
         }
+       
     }
 }
