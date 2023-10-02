@@ -156,34 +156,28 @@ namespace Triangle3
 			squares = new List<Square> ();
 			this.validation = validation;
         }
-
-		public void CreateNewTriangle(double a, double h)
+        /// <summary>
+		/// value get from reflection maybe?
+		/// </summary>
+		/// <param name="a"></param>
+		/// <param name="h"></param>
+        public void CreateNewTriangle(double a, double h)
 		{
-            if (a <= 0)
-            {
-                throw new ArgumentException("the length of the base of the triangle must be greater than zero");
-            }
-            if (h <= 0)
-            {
-                throw new ArgumentException("height must be greater than zero");
-            }
+            validation.ValidationLength(a, "triangle", "base");
+            validation.ValidationLength(h, "triangle", "height");
             triangles.Add(new Triangle(a,h)); 
 		}
 
 		public void CreateNewSquare(double a)
 		{
-			validation.ValidationLength(a, "square", );
-            if (a <= 0)
-            {
-                throw new ArgumentException("the length of the side of the square must be greater than zero");
-            }
+			validation.ValidationLength(a, "square", "base");
 			squares.Add( new Square(a));
         }
     }
 
 	public class Validation
 	{
-		//value get from reflection
+		
 		public void ValidationLength(double a, string typeObject, string typeValue)
 		{
 			if (a <= 0)
