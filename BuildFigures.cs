@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Triangle3
 {
-    public class BuildFigures
+
+    public class BuildFigures : IBuildFigures
     {
         public List<Triangle> triangles { get; private set; }
         public List<Square> squares { get; private set; }
@@ -20,20 +21,21 @@ namespace Triangle3
 
         public void CreateNewTriangle(double a, double h)
         {
-            var type = typeof(Triangle);
-            PropertyInfo[] properties = type.GetProperties();
-            validation.ValidationLength(a, typeof(Triangle).Name, properties[0].Name);
-            validation.ValidationLength(h, typeof(Triangle).Name, properties[1].Name);
+            validation.ValidationLength(a, "Triangle", "Base");
+            validation.ValidationLength(h, "Triangle", "Height");
             triangles.Add(new Triangle(a, h));
         }
 
         public void CreateNewSquare(double a)
         {
-            var type = typeof(Square);
-            PropertyInfo[] properties = type.GetProperties();
-            validation.ValidationLength(a, typeof(Square).Name, properties[0].Name);
+            validation.ValidationLength(a, "Square", "Side");
             squares.Add(new Square(a));
-        }
-       
+        }     
+    }
+
+    public interface IBuildFigures
+    {
+        void CreateNewTriangle(double a, double h);
+        void CreateNewSquare(double a);
     }
 }

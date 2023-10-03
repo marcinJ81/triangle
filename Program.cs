@@ -124,10 +124,10 @@ namespace Triangle3
         }
 	}
 
-	//to value object ??
-	public class Square
-	{ 
-		//A change to Side
+    //to value object ??
+    public class Square
+    {
+        public string Name {get; private set;}
 		public double Side { get; private set; }
 		public Square()
 		{
@@ -135,15 +135,20 @@ namespace Triangle3
 		}
 		public Square(double a)
 		{
-
             Side = a;
-		}
+            Name = $"{nameof(Square)} (SideA: {Side})";
+        }
 
 		public double Area()
 		{
 			return Side * Side;
 		}
-	}
+
+        public override string ToString()
+        {
+            return $"{nameof(Square)} (SideA: {Side})";
+        }
+    }
 
     //to value object ??
     public class Triangle
@@ -167,6 +172,12 @@ namespace Triangle3
 		{
 			return (Base * Height) / 2;
 		}
-	}
+
+        public override string ToString()
+        {
+            var type = typeof(Triangle);
+            return type.Name;
+        }
+    }
 	
 }
