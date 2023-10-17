@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading;
+using Triangle3.Figures;
 
 namespace Triangle3
 {
@@ -23,10 +25,10 @@ namespace Triangle3
         public delegate double Area();
 		static void Main(string[] args)
 		{
-			BuildFigures buildFigures = new BuildFigures(new Validation());
 			int chooise = -1;
             double a, h, sideSquare;
-            
+            FigureFactory figureFactory = new FigureFactory();
+
             while (chooise < 9)
 			{ 
 				Console.WriteLine("Wybierz rodzaj figury");
@@ -47,7 +49,8 @@ namespace Triangle3
                             a = Convert.ToDouble(Console.ReadLine());
                             Console.WriteLine("Wysokość");
                             h = Convert.ToDouble(Console.ReadLine());
-                            buildFigures.CreateNewTriangle(a, h);
+                            //buildFigures.CreateNewTriangle(a, h);
+                            figureFactory.CreateTriangle(a, h);
                             break;
 
                         case 2:
@@ -55,63 +58,86 @@ namespace Triangle3
                             Console.WriteLine("Podaj wymiary prostokąta");
                             Console.WriteLine("Bok");
                             a = Convert.ToDouble(Console.ReadLine());
-                            buildFigures.CreateNewSquare(a);
+                            //buildFigures.CreateNewSquare(a);
+                            figureFactory.CreateSquera(a);
                             break;
 
                         case 3:
 
                             Console.WriteLine("Licz pole figur");
-                            if (!buildFigures.triangles.Any())
+                            if (!figureFactory.FigureList.Any())
                             {
-                                Console.WriteLine($"Brak zdefiniowanych {GetTypeName(buildFigures.triangles)}");
-                                break;
-                            }
-                            if (!buildFigures.squares.Any())
-                            {
-                                Console.WriteLine($"Brak zdefiniowanych {GetTypeName(buildFigures.squares)} ");
+                                Console.WriteLine($"Brak zdefiniowanych figur");
                                 break;
                             }
 
-                            foreach (var triangle in buildFigures.triangles)
+                            foreach (var figure in figureFactory.FigureList)
                             {
-                                Area d = triangle.Area;
-                                Console.WriteLine($"pole {GetTypeName(triangle)} wynosi {d()}");
+                                switch (figure)
+                                {
+                                    case Triangle triangle:
+                                        Console.WriteLine($"Pole trójkąta wynosi {figure.Area()}");
+                                        break;
+                                    case Square square:
+                                        Console.WriteLine($"Pole kwadrata wynosi {figure.Area()}");
+                                        break;
+                                }
                             }
-
-                            foreach (var square in buildFigures.squares)
-                            {
-                                Area d = square.Area;
-                                Console.WriteLine($"pole {GetTypeName(square)} wynosi {d()}");
-                            }
-                           
                             break;
 
                         case 4:
-                            Console.WriteLine("Porównanie trójkątów");
-                            if (!buildFigures.triangles.Any())
+                            Console.WriteLine("Porównanie pól figur");
+                            if (!figureFactory.FigureList.Any())
                             {
-                                Console.WriteLine($"Brak zdefiniowanych {GetTypeName(buildFigures.triangles)}");
+                                Console.WriteLine($"Brak zdefiniowanych figur");
                                 break;
                             }
-                           
-                            for (int i = 0; i < buildFigures.triangles.Count(); i ++)
+
+                            List<Triangle> trianglelist = new List<Triangle>();
+                            List<Square> squareList = new List<Square>();
+                            foreach (var figure in figureFactory.FigureList)
                             {
-                                if (i % 2 == 0 && i < buildFigures.triangles.Count() - 1)
+                                if (figure as Triangle != null)
                                 {
-                                    if(buildFigures.triangles[i].Area() == buildFigures.triangles[i+1].Area())
+                                    trianglelist.Add(figure as Triangle);
+                                }
+
+                                if (figure as Square != null)
+                                {
+                                    squareList.Add(figure as Square);
+                                }
+                            }
+
+                            if (trianglelist.Count > 1)
+                            {
+                                //licz pole i porównaj  
+                                for (int i = 0; i < trianglelist.Count; i++) 
+                                {
+                                    if (i % 2 == 0 && i < trianglelist.Count - 1)
                                     {
-                                        Console.WriteLine($"Pola są równe");
-                                    }
-                                    if (buildFigures.triangles[i].Area() > buildFigures.triangles[i + 1].Area())
-                                    {
-                                        Console.WriteLine($"jeden jest większy, tylko nie wiadomo który");
-                                    }
-                                    else 
-                                    {
-                                        Console.WriteLine($"albo odwrotnie");
+                                        if(trianglelist[i].Area() == trianglelist[i+1].Area())
+                                        {
+                                            Console.WriteLine($"{trianglelist[i].Name} pole wynosi {trianglelist[i].Area()}" +
+                                                $" jest równe {trianglelist[i+1].Name} którego pole wynosi {trianglelist[i+1].Area()}");
+                                        }
+                                        if (trianglelist[i].Area() > trianglelist[i + 1].Area())
+                                        {
+                                            Console.WriteLine($"{trianglelist[i].Name} pole wynosi {trianglelist[i].Area()}" +
+                                                $" jest większe od {trianglelist[i + 1].Name} którego pole wynosi {trianglelist[i + 1].Area()}");
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine($"{trianglelist[i].Name} pole wynosi {trianglelist[i].Area()}" +
+                                               $" jest mniejsze od {trianglelist[i + 1].Name} którego pole wynosi {trianglelist[i + 1].Area()}");
+                                        }
                                     }
                                 }
                             }
+                            if (squareList.Count > 1 )
+                            {
+                                //licz pole i porównaj
+                            }
+                           
                             break;
                     }
                 }
