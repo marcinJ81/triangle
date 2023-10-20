@@ -34,8 +34,8 @@ namespace Triangle3
             while (chooise < 9)
 			{ 
 				Console.WriteLine("Wybierz rodzaj figury");
-				Console.WriteLine("1 - trojakt");
-				Console.WriteLine("2 - kwadrat");
+				Console.WriteLine("1 - buduj trojakt");
+				Console.WriteLine("2 - buduj kwadrat");
                 Console.WriteLine("3 - licz pola");
                 Console.WriteLine("4 - Porównaj figury");
                 Console.WriteLine("9 - Koniec");
@@ -78,10 +78,10 @@ namespace Triangle3
                                 switch (figure)
                                 {
                                     case Triangle triangle:
-                                        Console.WriteLine($"Pole trójkąta wynosi {figure.Area()}");
+                                        Console.WriteLine($"Pole trójkąta {figure.Name} wynosi {figure.Area()}");
                                         break;
                                     case Square square:
-                                        Console.WriteLine($"Pole kwadrata wynosi {figure.Area()}");
+                                        Console.WriteLine($"Pole kwadrata {figure.Name} wynosi {figure.Area()}");
                                         break;
                                 }
                             }
