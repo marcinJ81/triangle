@@ -8,15 +8,18 @@ namespace Triangle3.Figures
     [DisplayName("Kwadrat")]
     public class Square : AClassNameAttribute<Square>, IArea
     {
+        private string Uuid { get; set; }
         [DisplayName("Bok")]
         public double Side { get; private set; }
         public string Name { get; private set; }
        
         public Square(double a)
+            :base()
         {
+            Uuid = base.Uuid;
             Side = a;
             var propertiesName = base.GetDescription<Square>();
-            Name = $"{base.GetDisplayName<Square>()} ({propertiesName[0]}: {Side})";
+            Name = $"{Uuid} {base.GetDisplayName<Square>()} ({propertiesName[0]}: {Side})";
         }
 
         public double Area()

@@ -10,8 +10,9 @@ namespace Triangle3.Figures
 {
  
     [DisplayName("Trójkąt")]
-    public class Triangle : AClassNameAttribute<Triangle>, IArea
+    public class Triangle : AClassNameAttribute<Triangle>, IArea 
     {
+        private string Uuid { get; set; }
         //A change to base
         [DisplayName("Podstawa")]
         public double Base { get; private set; }
@@ -20,11 +21,13 @@ namespace Triangle3.Figures
         public double Height { get; private set; }
         public string Name { get; private set; }
         public Triangle(double a, double h)
+            :base()
         {
+            this.Uuid = base.Uuid;
             Base = a;
             Height = h;
             var propertiesName = base.GetDescription<Triangle>();
-            Name = $"{base.GetDisplayName<Triangle>()} ({propertiesName[0]}: {Base} {propertiesName[1]}: {Height})";
+            Name = $"{Uuid} {GetDisplayName<Triangle>()} ({propertiesName[0]}: {Base} {propertiesName[1]}: {Height})";
         }
 
         public double Area()

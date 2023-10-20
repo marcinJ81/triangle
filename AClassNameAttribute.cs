@@ -8,7 +8,13 @@ namespace Triangle3
 {
     public abstract class AClassNameAttribute<T>
     {
-        public virtual string GetDisplayName<T>()
+		public string Uuid { get; private set;}
+
+        public AClassNameAttribute()
+        {
+            Uuid = Guid.NewGuid().ToString();
+        }
+        public string GetDisplayName<T>()
         {
             var displayName = typeof(T)
               .GetCustomAttributes(typeof(DisplayNameAttribute), true)
@@ -20,7 +26,7 @@ namespace Triangle3
             return "";
         }
 
-        public virtual List<string> GetDescription<T>()
+        public List<string> GetDescription<T>()
         {
             List<string> result = new List<string>();
             var properties = typeof(T).GetProperties();
@@ -41,5 +47,6 @@ namespace Triangle3
 
             return result;
         }
+		
     }
 }

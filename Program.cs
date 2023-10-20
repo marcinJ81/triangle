@@ -135,7 +135,27 @@ namespace Triangle3
                             }
                             if (squareList.Count > 1 )
                             {
-                                //licz pole i porównaj
+                                for (int i = 0; i < squareList.Count; i++)
+                                {
+                                    if (i % 2 == 0 && i < squareList.Count - 1)
+                                    {
+                                        if (squareList[i].Area() == squareList[i + 1].Area())
+                                        {
+                                            Console.WriteLine($"{squareList[i].Name} pole wynosi {squareList[i].Area()}" +
+                                                $" jest równe {squareList[i + 1].Name} którego pole wynosi {squareList[i + 1].Area()}");
+                                        }
+                                        if (squareList[i].Area() > squareList[i + 1].Area())
+                                        {
+                                            Console.WriteLine($"{squareList[i].Name} pole wynosi {squareList[i].Area()}" +
+                                                $" jest większe od {squareList[i + 1].Name} którego pole wynosi {squareList[i + 1].Area()}");
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine($"{squareList[i].Name} pole wynosi {squareList[i].Area()}" +
+                                               $" jest mniejsze od {squareList[i + 1].Name} którego pole wynosi {squareList[i + 1].Area()}");
+                                        }
+                                    }
+                                }
                             }
                            
                             break;
