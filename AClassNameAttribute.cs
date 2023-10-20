@@ -14,6 +14,7 @@ namespace Triangle3
         {
             Uuid = Guid.NewGuid().ToString();
         }
+        //from StacOverflow
         public string GetDisplayName<T>()
         {
             var displayName = typeof(T)
