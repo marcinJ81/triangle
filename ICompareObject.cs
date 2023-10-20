@@ -9,7 +9,7 @@ namespace Triangle3
         bool EqualsType(object obj, object obj2);
     }
 
-    public class CompareObject : ICompareObject
+    public class CompareObject<T> : ICompareObject
     {
         public bool EqualsType(object obj, object obj2)
         {

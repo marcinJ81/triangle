@@ -10,7 +10,7 @@ namespace Triangle3.Figures
 {
  
     [DisplayName("Trójkąt")]
-    public class Triangle : AClassNameAttribute<Triangle>, IArea 
+    public class Triangle : AClassNameAttribute<Triangle>, IArea
     {
         private string Uuid { get; set; }
         //A change to base

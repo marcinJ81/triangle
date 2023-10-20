@@ -6,6 +6,7 @@ namespace Triangle3
 {
     public interface IArea
     {
+        string Name { get; }    
         double Area();
     }
 }

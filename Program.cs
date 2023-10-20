@@ -28,6 +28,8 @@ namespace Triangle3
 			int chooise = -1;
             double a, h, sideSquare;
             FigureFactory figureFactory = new FigureFactory();
+            CompareFigures<Triangle> compareTriangle = new CompareFigures<Triangle>();
+            CompareFigures<Square> compareSquare = new CompareFigures<Square>();
 
             while (chooise < 9)
 			{ 
@@ -107,57 +109,15 @@ namespace Triangle3
                                     squareList.Add(figure as Square);
                                 }
                             }
+                            foreach (var item in compareTriangle.Compare(trianglelist))
+                            {
+                                Console.WriteLine(item);
+                            }
+                            foreach (var item in compareSquare.Compare(squareList))
+                            {  
+                                Console.WriteLine(item); 
+                            }
 
-                            if (trianglelist.Count > 1)
-                            {
-                                //licz pole i porównaj  
-                                for (int i = 0; i < trianglelist.Count; i++) 
-                                {
-                                    if (i % 2 == 0 && i < trianglelist.Count - 1)
-                                    {
-                                        if(trianglelist[i].Area() == trianglelist[i+1].Area())
-                                        {
-                                            Console.WriteLine($"{trianglelist[i].Name} pole wynosi {trianglelist[i].Area()}" +
-                                                $" jest równe {trianglelist[i+1].Name} którego pole wynosi {trianglelist[i+1].Area()}");
-                                        }
-                                        if (trianglelist[i].Area() > trianglelist[i + 1].Area())
-                                        {
-                                            Console.WriteLine($"{trianglelist[i].Name} pole wynosi {trianglelist[i].Area()}" +
-                                                $" jest większe od {trianglelist[i + 1].Name} którego pole wynosi {trianglelist[i + 1].Area()}");
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine($"{trianglelist[i].Name} pole wynosi {trianglelist[i].Area()}" +
-                                               $" jest mniejsze od {trianglelist[i + 1].Name} którego pole wynosi {trianglelist[i + 1].Area()}");
-                                        }
-                                    }
-                                }
-                            }
-                            if (squareList.Count > 1 )
-                            {
-                                for (int i = 0; i < squareList.Count; i++)
-                                {
-                                    if (i % 2 == 0 && i < squareList.Count - 1)
-                                    {
-                                        if (squareList[i].Area() == squareList[i + 1].Area())
-                                        {
-                                            Console.WriteLine($"{squareList[i].Name} pole wynosi {squareList[i].Area()}" +
-                                                $" jest równe {squareList[i + 1].Name} którego pole wynosi {squareList[i + 1].Area()}");
-                                        }
-                                        if (squareList[i].Area() > squareList[i + 1].Area())
-                                        {
-                                            Console.WriteLine($"{squareList[i].Name} pole wynosi {squareList[i].Area()}" +
-                                                $" jest większe od {squareList[i + 1].Name} którego pole wynosi {squareList[i + 1].Area()}");
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine($"{squareList[i].Name} pole wynosi {squareList[i].Area()}" +
-                                               $" jest mniejsze od {squareList[i + 1].Name} którego pole wynosi {squareList[i + 1].Area()}");
-                                        }
-                                    }
-                                }
-                            }
-                           
                             break;
                     }
                 }
