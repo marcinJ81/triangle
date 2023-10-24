@@ -35,10 +35,5 @@ namespace Triangle3.Figures
             return (Base * Height) / 2;
         }
 
-        public override string ToString()
-        {
-            var type = typeof(Triangle);
-            return type.Name;
-        }
     }
 }
