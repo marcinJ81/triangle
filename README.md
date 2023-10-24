@@ -4,7 +4,7 @@ The task has been expanded to include more figures:
 - Square,
 - Circle
 
-In the beginnig triangle class was simple,  now is not.
+In the beginnig triangle class was simple,  now is ?
 ```sh
 [DisplayName("Trójkąt")]
 public class Triangle : AClassNameAttribute<Triangle>, IArea
