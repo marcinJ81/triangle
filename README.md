@@ -32,3 +32,33 @@ In the beginnig triangle class was simple,  now is not.
 
 	}
 ```
+
+### Build object list
+Class FigureFactory
+
+```sh
+ public class FigureFactory : IFigureFactory
+ {
+     public List<IArea> FigureList { get; private set; }
+
+     public FigureFactory()
+     {
+         FigureList = new List<IArea>();
+     }
+
+     public void CreateTriangle(double baseSide,double height)
+     {
+         FigureList.Add(new Triangle(baseSide, height));
+     }
+
+     public void CreateSquera(double side) 
+     {
+         FigureList.Add(new Square(side));
+     }
+
+     public void CreateCircle(double radius)
+     {
+         FigureList.Add(new Circle(radius));
+     }
+ }
+```
