@@ -6,7 +6,7 @@ using System.Text;
 namespace Triangle3.Figures
 {
     [DisplayName("Okrąg")]
-    public class Circle : AClassNameAttribute<Circle>, IArea
+    public class Circle : AClassNameAttribute<Circle>, IArea, IPrototype<Circle>
     {
         private const double Pi = 3.14;
         private string Uuid { get; set; }
@@ -25,6 +25,11 @@ namespace Triangle3.Figures
         public double Area()
         {
             return Pi * (Radius * Radius);
+        }
+
+        public Circle Clone()
+        {
+           return new Circle(this.Radius);
         }
     }
 }
