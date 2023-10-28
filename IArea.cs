@@ -9,4 +9,9 @@ namespace Triangle3
         string Name { get; }    
         double Area();
     }
+
+    public interface IPrototype<T> 
+    {
+        T Clone();
+    }
 }

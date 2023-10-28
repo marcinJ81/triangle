@@ -10,7 +10,7 @@ namespace Triangle3.Figures
 {
  
     [DisplayName("Trójkąt")]
-    public class Triangle : AClassNameAttribute<Triangle>, IArea
+    public class Triangle : AClassNameAttribute<Triangle>, IArea, IPrototype<Triangle>
     {
         private string Uuid { get; set; }
         //A change to base
@@ -35,5 +35,9 @@ namespace Triangle3.Figures
             return (Base * Height) / 2;
         }
 
+        public Triangle Clone()
+        {
+            return new Triangle(this.Base, this.Height);
+        }
     }
 }

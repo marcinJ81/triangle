@@ -24,7 +24,7 @@ namespace Triangle3.Figures
 
         public double Area()
         {
-            return Pi * Math.Sqrt(Radius);
+            return Pi * (Radius * Radius);
         }
     }
 }
