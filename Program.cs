@@ -17,7 +17,7 @@ namespace Triangle3
             FigureFactory figureFactory = new FigureFactory();
             CompareFigures<Triangle> compareTriangle = new CompareFigures<Triangle>();
             CompareFigures<Square> compareSquare = new CompareFigures<Square>();
-            CompareFigures<Circle> compareCircle = new CompareFigures<Circle>();
+            CompareFigures<Circle> compareCircle = new CompareFigures<Circle>()
 
             while (chooise < 9)
 			{ 
