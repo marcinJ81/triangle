@@ -20,7 +20,7 @@ namespace Triangle3
                             result.Add($"{figureList[i].Name} pole wynosi {figureList[i].Area()}" +
                                 $" jest równe {figureList[i + 1].Name} którego pole wynosi {figureList[i + 1].Area()}");
                         }
-                        if (figureList[i].Area() > figureList[i + 1].Area())
+                        else if (figureList[i].Area() > figureList[i + 1].Area())
                         {
                             result.Add($"{figureList[i].Name} pole wynosi {figureList[i].Area()}" +
                                 $" jest większe od {figureList[i + 1].Name} którego pole wynosi {figureList[i + 1].Area()}");

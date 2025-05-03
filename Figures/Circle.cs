@@ -6,7 +6,7 @@ using System.Text;
 namespace Triangle3.Figures
 {
     [DisplayName("Okrąg")]
-    public class Circle : AClassNameAttribute<Circle>, IArea, IPrototype<Circle>
+    public class Circle : AClassNameAttribute<Circle>, IFigure
     {
         private const double Pi = 3.14;
         private string Uuid { get; set; }
@@ -18,8 +18,10 @@ namespace Triangle3.Figures
         {
             Radius = radius;
             this.Uuid = base.Uuid;
-            var propertiesName = base.GetDescription<Circle>();
-            Name = $"{Uuid} {GetDisplayName<Circle>()} ({propertiesName[0]}: {Radius})";
+        }
+        private Circle Clone()
+        {
+            return new Circle(this.Radius);
         }
 
         public double Area()
@@ -27,9 +29,18 @@ namespace Triangle3.Figures
             return Pi * (Radius * Radius);
         }
 
-        public Circle Clone()
+        public string GetName()
         {
-           return new Circle(this.Radius);
+            if (!string.IsNullOrEmpty(this.Name))
+            {
+                return this.Name;
+            }
+            return $"{this.GetType().Name}_{Radius}_{GetHashCode()}";
+        }
+
+        IFigure IPrototype<IFigure>.Clone()
+        {
+            return Clone();
         }
     }
 }

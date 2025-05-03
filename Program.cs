@@ -14,7 +14,7 @@ namespace Triangle3
 		{
 			BuildFigures buildFigures = new BuildFigures();
 			int chooise = -1;
-            double a, h, sideSquare;
+            double a, h, sideSquare, radius;
             FigureFactory figureFactory = new FigureFactory();
             CompareFigures<Triangle> compareTriangle = new CompareFigures<Triangle>();
             CompareFigures<Square> compareSquare = new CompareFigures<Square>();
@@ -25,12 +25,12 @@ namespace Triangle3
             while (chooise < 9)
 			{ 
 				Console.WriteLine("Wybierz rodzaj figury");
-				Console.WriteLine("1 - buduj trojakt");
+				Console.WriteLine("1 - buduj trojkat");
 				Console.WriteLine("2 - buduj kwadrat");
                 Console.WriteLine("3 - buduj okrąg");
                 Console.WriteLine("4 - licz pola");
                 Console.WriteLine("5 - Porównaj figury");
-                Console.WriteLine("6 - klonuj trójkąt");
+                Console.WriteLine("6 - klonuj trójkąt"); //choose saved triangle
                 Console.WriteLine("9 - Koniec");
                 chooise = Convert.ToInt32(Console.ReadLine());
 				try
@@ -47,8 +47,13 @@ namespace Triangle3
                             Console.WriteLine("Nazwa");
                             name = Console.ReadLine();
                             buildFigures.AddFigure(new Triangle(a,h,name));
-                            //buildFigures.CreateNewTriangle(a, h);
-                            figureFactory.CreateTriangle(a, h, name);
+                            FigureFactory.CreateFigure(new FigureDescriptionParameters
+                            {
+                                BaseSide = a,
+                                Height = h,
+                                FigureType = nameof(Triangle),
+                                Name = name
+                            });
                             break;
 
                         case 2:
@@ -58,77 +63,47 @@ namespace Triangle3
                             a = Convert.ToDouble(Console.ReadLine());
                             Console.WriteLine("Nazwa");
                             name = Console.ReadLine();
-                            buildFigures.AddFigure(new Square(a, name));
+                            FigureFactory.CreateFigure(new FigureDescriptionParameters
+                            {
+                                Side = a,
+                                FigureType = nameof(Square),
+                                Name = name
+                            });
                             break;
 
                         case 3:
 
                             Console.WriteLine("Podaj wymiary okręgu");
                             Console.WriteLine("Promień");
-                            a = Convert.ToDouble(Console.ReadLine());
-                            //buildFigures.CreateNewSquare(a);
-                            figureFactory.CreateCircle(a);
+                            radius = Convert.ToDouble(Console.ReadLine());
+                            FigureFactory.CreateFigure(new FigureDescriptionParameters
+                            {
+                                Radius = radius,
+                                FigureType = nameof(Circle),
+                                Name = name
+                            });
                             break;
 
                         case 4:
 
                             Console.WriteLine("Licz pole figur");
-                            if (!buildFigures.Figures.Any())
+                            if (!FigureFactory.FigureList.Any())
                             { 
                             
                                 Console.WriteLine($"Brak zdefiniowanych figur");
                                 break;
                             }
                            
-                            var triangles = buildFigures.Figures.OfType<Triangle>().ToList();
-                            var squares = buildFigures.Figures.OfType<Square>().ToList();
-                            Console.WriteLine($"Brak zdefiniowanych {(triangles.Any() ? nameof(Triangle) : nameof(Square))} ");
-
-                            //foreach (var triangle in triangles)
-                            //        {
-                            //            Area d = triangle.Area;
-                            //            Console.WriteLine($"pole {GetTypeName(triangle)} wynosi {d()}");
-                            //        }
-
-                            foreach (var figure in figureFactory.FigureList)
+                            foreach (var figure in FigureFactory.FigureList)
                             {
                                 Console.WriteLine($"Pole {figure.Name} wynosi {figure.Area()}");
-                                //switch (figure)
-                                //{
-                                //    case Triangle triangle:
-                                //        Console.WriteLine($"Pole trójkąta {figure.Name} wynosi {figure.Area()}");
-                                //        break;
-                                //    case Square square:
-                                //        Console.WriteLine($"Pole kwadrata {figure.Name} wynosi {figure.Area()}");
-                                //        break;
-                                //    case Circle circle:
-                                //        Console.WriteLine($"Pole koła {figure.Name} wynosi {figure.Area()}");
-                                //        break;
-                                //}
                             }
                             break;
 
-                        //case 5:
-                        //    Console.WriteLine("Porównanie pól figur");
-                        //    if (!figureFactory.FigureList.Any())
-                        //    {
-                        //        Console.WriteLine($"Brak zdefiniowanych figur");
-                        //        break;
-                        //    }
-
-                        //    //foreach (var square in squares)
-                        //    //{
-                        //    //    Area d = square.Area;
-                        //    //    Console.WriteLine($"pole {GetTypeName(square)} wynosi {d()}");
-                        //    //}
-                           
-                        //    break;
-
                         case 5:
-                            Console.WriteLine("Porównanie trójkątów");
-                            var trianglesToEquals = buildFigures.Figures.OfType<Triangle>().ToList();
-
-                            if (!trianglesToEquals.Any())
+                            Console.WriteLine("Porównanie pól figur");
+                           
+                            if (!FigureFactory.FigureList.Any())
                             {
                                 Console.WriteLine($"Brak zdefiniowanych {typeof(Triangle)}");
                                 break;
@@ -136,7 +111,7 @@ namespace Triangle3
                             List<Triangle> trianglelist = new List<Triangle>();
                             List<Square> squareList = new List<Square>();
                             List<Circle> circleList = new List<Circle>();
-                            foreach (var figure in figureFactory.FigureList)
+                            foreach (var figure in FigureFactory.FigureList)
                             {
                                 if (figure as Triangle != null)
                                 {
@@ -170,16 +145,6 @@ namespace Triangle3
                 }
 				
             }
-        }
-        private static double ReadPositiveDouble(string prompt)
-        {
-            double value;
-            do
-            {
-                Console.WriteLine(prompt);
-            } while (!double.TryParse(Console.ReadLine(), out value) || value <= 0);
-
-            return value;
         }
 	}
 	

@@ -10,7 +10,7 @@ namespace Triangle3.Figures
 {
  
     [DisplayName("Trójkąt")]
-    public class Triangle : AClassNameAttribute<Triangle>, IArea, IPrototype<Triangle>, IFigure
+    public class Triangle : AClassNameAttribute<Triangle>, IFigure
     {
         private string Uuid { get; set; }
         //A change to base
@@ -27,19 +27,12 @@ namespace Triangle3.Figures
             this.Uuid = base.Uuid;
             Base = a;
             Height = h;
-            var propertiesName = base.GetDescription<Triangle>();
-            Name = $"{Uuid} {GetDisplayName<Triangle>()} ({propertiesName[0]}: {Base} {propertiesName[1]}: {Height})";
             Name = name;
         }
 
         public double Area()
         {
             return (Base * Height) / 2;
-        }
-
-        public Triangle Clone()
-        {
-            return new Triangle(this.Base, this.Height, this.Name);
         }
 
         public string GetName()
@@ -49,6 +42,16 @@ namespace Triangle3.Figures
                 return this.Name;
             }
             return $"{this.GetType().Name}_{Base}_{Height}_{GetHashCode()}";
+        }
+
+        IFigure IPrototype<IFigure>.Clone()
+        {
+            return Clone();
+        }
+
+        private Triangle Clone()
+        {
+            return new Triangle(this.Base, this.Height, this.Name);
         }
     }
 }

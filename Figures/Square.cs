@@ -6,22 +6,19 @@ using System.Text;
 namespace Triangle3.Figures
 {
     [DisplayName("Kwadrat")]
-    public class Square : AClassNameAttribute<Square>, IArea, IPrototype<Square>, IFigure
+    public class Square : AClassNameAttribute<Square>, IFigure
     {
         private string Uuid { get; set; }
         [DisplayName("Bok")]
         public double Side { get; private set; }
         public string Name { get; private set; }
 
-        public Square(double a)
-            : base() { }
-
         public Square(double a, string squareName)
+            : base()
         {
             Uuid = base.Uuid;
             Side = a;
-            var propertiesName = base.GetDescription<Square>();
-            Name = $"{Uuid} {base.GetDisplayName<Square>()} ({propertiesName[0]}: {Side})";
+            Name = squareName;
         }
 
         public double Area()
@@ -43,10 +40,15 @@ namespace Triangle3.Figures
             return $"{this.GetType().Name}_{Side}_{GetHashCode()}";
         }
 
-
-        public Square Clone()
+        private Square Clone()
         {
-            return new Square(Side);
+            //to chage clony uid? maybe no
+            return new Square(Side, Name);
+        }
+
+        IFigure IPrototype<IFigure>.Clone()
+        {
+            return Clone();
         }
     }
 }

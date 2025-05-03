@@ -14,7 +14,8 @@ namespace Triangle3
         {
             Uuid = Guid.NewGuid().ToString();
         }
-        public string GetDisplayName<T>()
+        [Obsolete("Not use")]
+        private  string GetDisplayName<T>()
         {
             var displayName = typeof(T)
               .GetCustomAttributes(typeof(DisplayNameAttribute), true)
@@ -25,8 +26,8 @@ namespace Triangle3
 
             return "";
         }
-
-        public List<string> GetDescription<T>()
+        [Obsolete("Not use")]
+        private  List<string> GetDescription<T>()
         {
             List<string> result = new List<string>();
             var properties = typeof(T).GetProperties();
