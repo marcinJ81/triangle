@@ -10,7 +10,7 @@ namespace Triangle3.Figures
 {
  
     [DisplayName("Trójkąt")]
-    public class Triangle : AClassNameAttribute<Triangle>, IArea, IPrototype<Triangle>
+    public class Triangle : AClassNameAttribute<Triangle>, IArea, IPrototype<Triangle>, IFigure
     {
         private string Uuid { get; set; }
         //A change to base
@@ -19,6 +19,7 @@ namespace Triangle3.Figures
         //H change to height
         [DisplayName("Wysokość")]
         public double Height { get; private set; }
+        //A change to name
         public string Name { get; private set; }
         public Triangle(double a, double h, string name)
             :base()
@@ -38,7 +39,7 @@ namespace Triangle3.Figures
 
         public Triangle Clone()
         {
-            return new Triangle(this.Base, this.Height);
+            return new Triangle(this.Base, this.Height, this.Name);
         }
 
         public string GetName()

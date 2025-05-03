@@ -10,7 +10,7 @@ namespace Triangle3
 {
     public interface IFigureFactory
 	{
-		void CreateTriangle(double baseSide,double height);
+		void CreateTriangle(double baseSide,double height, string name);
 		void CreateSquera(double side);
         void CreateCircle(double radius);
 	}	
@@ -24,9 +24,9 @@ namespace Triangle3
             FigureList = new List<IArea>();
         }
 
-        public void CreateTriangle(double baseSide,double height)
+        public void CreateTriangle(double baseSide,double height, string name)
         {
-            FigureList.Add(new Triangle(baseSide, height));
+            FigureList.Add(new Triangle(baseSide, height, name));
         }
 
         public void CreateSquera(double side) 

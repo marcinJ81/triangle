@@ -6,15 +6,15 @@ using System.Text;
 namespace Triangle3.Figures
 {
     [DisplayName("Kwadrat")]
-    public class Square : AClassNameAttribute<Square>, IArea, IPrototype<Square>
+    public class Square : AClassNameAttribute<Square>, IArea, IPrototype<Square>, IFigure
     {
         private string Uuid { get; set; }
         [DisplayName("Bok")]
         public double Side { get; private set; }
         public string Name { get; private set; }
-       
+
         public Square(double a)
-            :base()
+            : base() { }
 
         public Square(double a, string squareName)
         {
