@@ -15,10 +15,10 @@ namespace Triangle3
         {
             if (obj == null && obj2 == null)
             {
-                return false;
+                return true;
             }
 
-            if (obj.GetType() != obj2.GetType())
+            if (obj == null || obj2 == null || obj.GetType() != obj2.GetType())
             {
                 return false;
             }

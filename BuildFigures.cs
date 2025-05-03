@@ -6,37 +6,13 @@ using Triangle3.Figures;
 
 namespace Triangle3
 {
-
-    public class BuildFigures : IBuildFigures
+    public class BuildFigures
     {
-        public List<Triangle> triangles { get; private set; }
-        public List<Square> squares { get; private set; }
+        public List<IFigure> Figures { get; private set; } = new List<IFigure>();
 
-        private IValidation validation { get; set; }
-        public BuildFigures(IValidation validation)
+        public void AddFigure(IFigure figure)
         {
-            triangles = new List<Triangle>();
-            squares = new List<Square>();
-            this.validation = validation;
+            Figures.Add(figure);
         }
-
-        public void CreateNewTriangle(double a, double h)
-        {
-            validation.ValidationLength(a, "Triangle", "Base");
-            validation.ValidationLength(h, "Triangle", "Height");
-            triangles.Add(new Triangle(a, h));
-        }
-
-        public void CreateNewSquare(double a)
-        {
-            validation.ValidationLength(a, "Square", "Side");
-            squares.Add(new Square(a));
-        }     
-    }
-
-    public interface IBuildFigures
-    {
-        void CreateNewTriangle(double a, double h);
-        void CreateNewSquare(double a);
     }
 }

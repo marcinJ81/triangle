@@ -9,7 +9,7 @@ namespace Triangle3.Figures
         public string Name { get; private set; }
         public double Side { get; private set; }
 
-        public Square(double a)
+        public Square(double a, string squareName)
         {
             Side = a;
             Name = $"{nameof(Square)} (SideA: {Side})";
@@ -24,5 +24,15 @@ namespace Triangle3.Figures
         {
             return $"{nameof(Square)} (SideA: {Side})";
         }
+
+        public string GetName()
+        {
+            if (!string.IsNullOrEmpty(this.Name))
+            {
+                return this.Name;
+            }
+            return $"{this.GetType().Name}_{Side}_{GetHashCode()}";
+        }
+
     }
 }
