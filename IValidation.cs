@@ -23,6 +23,11 @@ namespace Triangle3
                 throw new ArgumentException("Figure type must be specified.");
             }
 
+            //if ()
+            //{
+                
+            //}
+
             switch (figureParameters.FigureType.ToLower())
             {
                 case "triangle":

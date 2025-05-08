@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangle3", "Triangle3.csproj", "{568981FB-0B0C-4AF0-9C8B-AFBDE4D65728}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiguresTestProject", "..\FuguresTestProject\FiguresTestProject.csproj", "{290BC1FE-422A-4674-961E-ADD8485E7762}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTestProject", "..\NUnitTestProject\NUnitTestProject.csproj", "{1FF8CEE1-1B8E-41AF-B9A1-E797D3CEE082}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{568981FB-0B0C-4AF0-9C8B-AFBDE4D65728}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{568981FB-0B0C-4AF0-9C8B-AFBDE4D65728}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{568981FB-0B0C-4AF0-9C8B-AFBDE4D65728}.Release|Any CPU.Build.0 = Release|Any CPU
-		{290BC1FE-422A-4674-961E-ADD8485E7762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{290BC1FE-422A-4674-961E-ADD8485E7762}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{290BC1FE-422A-4674-961E-ADD8485E7762}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{290BC1FE-422A-4674-961E-ADD8485E7762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FF8CEE1-1B8E-41AF-B9A1-E797D3CEE082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FF8CEE1-1B8E-41AF-B9A1-E797D3CEE082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FF8CEE1-1B8E-41AF-B9A1-E797D3CEE082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF8CEE1-1B8E-41AF-B9A1-E797D3CEE082}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
