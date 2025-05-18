@@ -25,7 +25,7 @@ namespace Triangle3.Figures
         public static void CreateFigure(FigureDescriptionParameters parameters)
         {
             _validation.ValidationParameters(parameters);
-            _validation.UniqueName(FigureList, parameters.Name);
+            _validation.UniqueName(FigureList, parameters.Name, parameters.FigureType);
 
             switch (parameters.FigureType.ToLower())
             {

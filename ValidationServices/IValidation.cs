@@ -9,7 +9,7 @@ namespace Triangle3.ValidationServices
     public interface IValidation
     {
         void ValidationParameters(FigureDescriptionParameters figureParameters);
-        void UniqueName(List<IFigure> figureList, string figureName);
+        void UniqueName(List<IFigure> figureList, string figureName, string figureType);
     }
 
     public class Validation : IValidation
@@ -89,9 +89,11 @@ namespace Triangle3.ValidationServices
             }
         }
 
-        public void UniqueName( List<IFigure> figureList, string figureName)
+        public void UniqueName( List<IFigure> figureList, string figureName, string figureType)
         {
-            if (figureList.Any(x => x.GetName().Contains(figureName)))
+            var figuresInTheSameType = figureList.Where(x => x.GetType().Name.ToLower() == figureType.ToLower())
+                                                 .ToList();
+            if (figuresInTheSameType.Any(x => x.GetName().Contains(figureName)))
             {
                 throw new ArgumentException("Figure name must be unique.");
             }
