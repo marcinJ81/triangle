@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="SpatialFigures\" />
+    <Compile Remove="SpatialFigures\**" />
+    <EmbeddedResource Remove="SpatialFigures\**" />
+    <None Remove="SpatialFigures\**" />
   </ItemGroup>
 
   <ItemGroup>

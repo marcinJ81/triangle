@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace Triangle3
+namespace Triangle3.Figures
 {
     public abstract class AClassNameAttribute<T>
     {

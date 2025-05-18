@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Triangle3
+namespace Triangle3.ServiceComparer
 {
     public interface ICompareObject
     {

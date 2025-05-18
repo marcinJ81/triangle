@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using Triangle3.Figures;
+using Triangle3.ValidationServices;
 
-namespace Triangle3
+namespace Triangle3.Figures
 {
     public class FigureDescriptionParameters
     {

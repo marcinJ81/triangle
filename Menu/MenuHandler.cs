@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Triangle3.Extension;
 using Triangle3.Figures;
+using Triangle3.ServiceComparer;
 
-namespace Triangle3
+namespace Triangle3.Menu
 {
     public class MenuHandler
     {
-        private readonly BuildFigures _buildFigures;
-        private readonly FigureFactory _figureFactory;
         private readonly CompareFigures<Triangle> _compareTriangle;
         private readonly CompareFigures<Square> _compareSquare;
         private readonly CompareFigures<Circle> _compareCircle;
 
         public MenuHandler()
         {
-            _buildFigures = new BuildFigures();
-            _figureFactory = new FigureFactory();
             _compareTriangle = new CompareFigures<Triangle>();
             _compareSquare = new CompareFigures<Square>();
             _compareCircle = new CompareFigures<Circle>();
@@ -101,7 +99,6 @@ namespace Triangle3
             Console.WriteLine("Nazwa:");
             string name = Console.ReadLine();
 
-            _buildFigures.AddFigure(new Triangle(a, h, name));
             FigureFactory.CreateFigure(new FigureDescriptionParameters
             {
                 BaseSide = a,

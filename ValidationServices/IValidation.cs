@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Triangle3.Figures;
 
-namespace Triangle3
+namespace Triangle3.ValidationServices
 {
     public interface IValidation
     {
