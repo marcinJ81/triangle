@@ -25,6 +25,7 @@ namespace Triangle3.Figures
         public static void CreateFigure(FigureDescriptionParameters parameters)
         {
             _validation.ValidationParameters(parameters);
+            _validation.UniqueName(FigureList, parameters.Name);
 
             switch (parameters.FigureType.ToLower())
             {
@@ -35,13 +36,12 @@ namespace Triangle3.Figures
                     FigureList.Add( new Square(parameters.Side.Value, parameters.Name));
                     break;
                 case "circle":
-                    FigureList.Add(new Circle(parameters.Radius.Value));
+                    FigureList.Add(new Circle(parameters.Radius.Value,parameters.Name));
                     break;
                 default:
                     throw new NotSupportedException($"Figure type '{parameters.FigureType}' is not supported.");
             }
         }
     }
-
 
 }

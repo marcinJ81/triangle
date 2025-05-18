@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Triangle3.Figures;
 
@@ -8,6 +9,7 @@ namespace Triangle3.ValidationServices
     public interface IValidation
     {
         void ValidationParameters(FigureDescriptionParameters figureParameters);
+        void UniqueName(List<IFigure> figureList, string figureName);
     }
 
     public class Validation : IValidation
@@ -23,11 +25,6 @@ namespace Triangle3.ValidationServices
             {
                 throw new ArgumentException("Figure type must be specified.");
             }
-
-            //if ()
-            //{
-                
-            //}
 
             switch (figureParameters.FigureType.ToLower())
             {
@@ -89,6 +86,14 @@ namespace Triangle3.ValidationServices
             if (string.IsNullOrWhiteSpace(parameters.Name))
             {
                 throw new ArgumentException("Circle name must be specified.");
+            }
+        }
+
+        public void UniqueName( List<IFigure> figureList, string figureName)
+        {
+            if (figureList.Any(x => x.GetName().Contains(figureName)))
+            {
+                throw new ArgumentException("Figure name must be unique.");
             }
         }
     }
