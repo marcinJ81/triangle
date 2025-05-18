@@ -149,7 +149,7 @@ namespace Triangle3.Menu
 
             foreach (var figure in FigureFactory.FigureList)
             {
-                Console.WriteLine($"Pole {figure.Name} wynosi {figure.Area()}");
+                Console.WriteLine($"Pole figury {figure.Name} typu {figure.GetType().Name} wynosi {figure.Area()}");
             }
         }
 
